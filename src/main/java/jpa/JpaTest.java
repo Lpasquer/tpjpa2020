@@ -1,5 +1,6 @@
 package jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import kanban.Fiche;
+import kanban.Tag;
 import kanban.Utilisateur;
 
 public class JpaTest {
@@ -47,8 +49,12 @@ public class JpaTest {
 			Fiche fiche = new Fiche("Fiche 1", "15/01/2021", Michael, 60, "Rennes", "http://blabla", null);
 			manager.persist(fiche);
 			Utilisateur Nemo = new Utilisateur("Captain Nemo");
-			Fiche fiche2 = new Fiche("Fiche 2", "15/01/2021", Nemo, 60, "Rennes", "http://blabla", null);
-
+			Fiche fiche2 = new Fiche("Fiche 2", "15/01/2021", Nemo, 240, "Rennes", "http://blabla", null);
+			Tag tag1 = new Tag("Tag 1");
+			manager.persist(tag1);
+			List<Tag> test = new ArrayList();
+			test.add(tag1);
+			fiche2.setTags(test);
 			manager.persist(Michael);
 			manager.persist(Nemo);
 			manager.persist(fiche2);
